@@ -9,7 +9,7 @@ type AuthState = {
 const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
-  isLoading: true, // 🔥 IMPORTANT
+  isLoading: true, 
 }
 
 const authSlice = createSlice({

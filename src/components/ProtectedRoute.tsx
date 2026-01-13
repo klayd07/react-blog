@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import type { RootState } from "../store"
+import type { ReactNode } from "react"
 
 type Props = {
-  children: JSX.Element
+  children: ReactNode
 }
 
 function ProtectedRoute({ children }: Props) {
@@ -11,17 +12,15 @@ function ProtectedRoute({ children }: Props) {
     (state: RootState) => state.auth
   )
 
-  // ⏳ WAIT until auth check finishes
   if (isLoading) {
     return <p>Checking authentication...</p>
   }
 
-  // 🔒 Block unauthenticated users
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />
   }
 
-  return children
+  return <>{children}</>
 }
 
 export default ProtectedRoute

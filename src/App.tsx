@@ -7,6 +7,7 @@ import Blog from "./pages/Blog"
 import ProtectedRoute from "./components/ProtectedRoute"
 import { supabase } from "./lib/supabase"
 import { setUser, clearUser } from "./store/authSlice"
+import PostView from "./pages/PostView"
 
 function App() {
   const dispatch = useDispatch()
@@ -56,7 +57,17 @@ function App() {
           </ProtectedRoute>
         }
       />
+
+      <Route
+        path="/post/:id"
+        element={
+          <ProtectedRoute>
+            <PostView />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
+    
   )
 }
 
